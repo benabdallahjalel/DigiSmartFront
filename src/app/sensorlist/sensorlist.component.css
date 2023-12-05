@@ -1,0 +1,72 @@
+#sensor-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 230px;
+  margin-right: 400px;
+}
+
+#sensor-table th,
+#sensor-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#sensor-table th {
+  background-color: #f2f2f2;
+}
+
+#sensor-table img {
+  width: 50px;
+  height: 50px;
+}
+/* Style for the delete button */
+.delete-button {
+  background-color: #f44336; /* Red background color */
+  color: #fff; /* White text color */
+  padding: 8px 16px; /* Add some padding for a comfortable button size */
+  border: none; /* Remove the default button border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Show a pointer cursor when hovering over the button */
+}
+
+/* Style for the delete button on hover */
+.delete-button:hover {
+  background-color: #d32f2f; /* Darker red background color */
+}
+
+/* Style for the delete button when clicked (active state) */
+.delete-button:active {
+  background-color: #b71c1c; /* Even darker red background color */
+}
+/* Réinitialisation des styles du bouton par défaut du navigateur */
+
+/* Style de base pour le bouton */
+.custom-button {
+  background-color: #3498db;
+  padding: 8px 16px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Style lorsque le curseur survole le bouton */
+.custom-button:hover {
+  background-color: #2980b9;
+}
+
+/* Style lorsque le bouton est actif (clic) */
+.custom-button:active {
+  background-color: #1e558e;
+}
+
+/* Style lorsque le bouton est désactivé */
+.custom-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.modal1{
+  background-color: white;
+}
+

@@ -1,0 +1,48 @@
+.main_container .top_nav {
+  display: block;
+  margin-left: 230px;
+}
+
+.flag-image {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-toggle.flag-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-toggle.flag-button:focus,
+.dropdown-toggle.flag-button:active {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.dropdown-toggle.flag-button::after {
+  display: none;
+}
+
+.dropdown-toggle.flag-button:focus {
+  box-shadow: none !important;
+}
+
+.btn {
+  background: rgb(101, 176, 78);
+  border-radius: 20px;
+  color: white;
+  font-weight: 400;
+  width: 75%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Roboto';
+  border: 0px;
+}
+
+  &:hover {
+   background-color: rgb(137, 187, 122);
+ }

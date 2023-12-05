@@ -1,0 +1,190 @@
+<div class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="right_col" role="main">
+        <div>
+          <div class="page-title">
+            <div class="title_left">
+              <app-alert *ngIf="showAlert" [color]="alertColor">{{alertMsg}}</app-alert>
+
+              <!-- <h3>{{ 'Device ID' | translate }}: {{ device.deviceId }}</h3>
+              <br />
+              <h6>{{ 'Device @ MAC' | translate }}: {{ device.macAdress }}</h6> -->
+              <!-- <div class="Pdf"> 
+              <div class="pdf-type">
+                <h6>{{ 'PDF By Seneor' | translate }} : </h6>
+
+                <select name="pets" id="pet-select" #selectElem  (change)="findBySensor(selectElem.value)" style="margin-left: 20px;padding: 3px">
+                  <option [value]="">Select a Sensor</option>
+                  <option *ngFor="let s of Sensors" [value]="s.sensorId">{{ s.sensorName }}</option>
+                </select>
+                <button (click)="generatePDF()" [disabled]="pdf==null"class="export-button"><img src="assets/images/pdf.png" width="40" height="40" ></button>
+              </div>
+               <div class="CSV-date">
+                 <form (submit)="exportCSV()"  >
+                   <h6 >{{ 'Export CSV' | translate }} : </h6>
+                   <label for="startDate">Start Date:</label>
+                   <input type="datetime-local" id="SstartDate" name="startDate" [(ngModel)]="startDate" >
+
+                   <label for="endDate">End Date:</label>
+                   <input type="datetime-local" id="EendDate" name="endDate" [(ngModel)]="endDate" >
+&ensp;
+                   <button type="submit"  class="export-button"><img src="assets/images/csv.png" width="40" height="40" >
+</button>
+                 </form>
+               </div>
+              <div class="pdf-date">
+                <form (submit)="generateDevicePDF()"  >
+                  <h6>{{ 'PDF By Date' | translate }} : </h6>
+                  <label for="startDate">Start Date:</label>
+                  <input type="date" id="startDate" name="startDate" [(ngModel)]="startDate">
+
+                  <label for="endDate">End Date:</label>
+                  <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate">
+
+                  <button type="submit" class="export-button" ><img src="assets/images/pdf.png" width="40" height="40"></button>
+                </form>
+              </div>
+             </div>   -->
+            </div>
+          </div>
+          <!-- Export csv filr -->
+
+          <div class="row">
+            <form class="col" #f="ngForm" (ngSubmit)="exportCSV()" novalidate>
+              <div class="form-row align-items-center">
+                <div class="form-group col">
+                  <label for="startDate">{{'Start Date'|translate}}</label>
+                  <div class="input-group date" id="start-datepicker">
+                    <input class="form-control" type="datetime-local" id="startDate" name="startDate"
+                      [(ngModel)]="startDate" (change)="checkFormValidity()" required max="{{ getCurrentDate() }}">
+                  </div>
+                </div>
+
+                <div class="form-group col">
+                  <label for="endDate"> {{'End Date'|translate}}</label>
+                  <div class="input-group date" id="end-datepicker">
+                    <input class="form-control" type="datetime-local" id="endDate" name="endDate" [(ngModel)]="endDate"
+                      (change)="checkFormValidity()" required [min]="startDate" max="{{ getCurrentDate() }}">
+                  </div>
+                </div>
+
+                <div class="form-group col">
+                  <button type="submit" class="export-button" [disabled]="isFormDisabled">
+                    <img src="assets/images/csv.png" width="40" height="40">
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- export pdf file -->
+          <div class="row">
+            <form class="col" #f="ngForm" (submit)="generateDevicePDF()" novalidate>
+              <div class="form-row align-items-center">
+                <div class="form-group col">
+                  <label for="startDate"> {{'Start Date'|translate}}</label>
+                  <div class="input-group date" id="start-datepicker">
+                    <input class="form-control" type="date" id="startDate" name="startDate" [(ngModel)]="startDate"
+                      (change)="checkFormValidity()" required max="{{ getCurrentDate() }}">
+                  </div>
+                </div>
+
+                <div class="form-group col">
+                  <label for="endDate"> {{'End Date'|translate}}</label>
+                  <div class="input-group date" id="end-datepicker">
+                    <input class="form-control" type="date" id="endDate" name="endDate" [(ngModel)]="endDate"
+                      (change)="checkFormValidity()" required max="{{ getCurrentDate() }}" [min]="startDate">
+                  </div>
+                </div>
+
+                <div class="form-group col">
+                  <button type="submit" class="export-button" [disabled]="isFormDisabled"><img
+                      src="assets/images/pdf.png" width="40" height="40"></button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- export pdf file -->
+          <div class="row">
+            <form class="col" #f="ngForm" (submit)="generatePDF()" novalidate>
+              <div class="form-row align-items-center">
+                <div class="form-group col">
+                  <label for="startDate"> {{'Select a sensor'|translate}}</label>
+                  <div class="input-group date" id="start-datepicker">
+                    <select class="form-control" name="pets" id="pet-select" #selectElem
+                      (change)="findBySensor(selectElem.value)" style="margin-left: 20px;padding: 3px">
+                      <option [value]=""> {{'Select a sensor'|translate}}</option>
+                      <option *ngFor="let s of Sensors" [value]="s.sensorId">{{ s.sensorName }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col">
+                  <button type="submit" [disabled]="pdf==null" class="export-button"><img src="assets/images/pdf.png"
+                      width="40" height="40"></button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="clearfix" style="width: 100%;"></div>
+          <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>{{'Historical of this device'|translate }}</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                      <thead>
+                        <tr>
+                          <th>
+                            <input type="checkbox" id="check-all" class="flat" hidden>
+                          </th>
+                          <th class="column-title"> {{'Code'|translate}}</th>
+                          <th class="column-title"> {{'Date'|translate}} </th>
+                          <th class="column-title"> {{'Data Sensor'|translate}} </th>
+                          <th class="column-title"> {{'Action'|translate}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="even pointer" *ngFor="let h of HistoriqueListe?.content">
+                          <td class="a-center">
+                            <input type="checkbox" class="flat" name="table_records">
+                          </td>
+                          <td>{{ h.id }}</td>
+                          <td><a href="#">{{ h.date }}</a></td>
+                          <td>{{h.dataSensor.data}}</td>
+                          <td>{{ h.action }}</td>
+                        </tr>
+                        <tr *ngIf="message != 'DataLoaded'" class="text-center no-data-found">
+                          <!--                        <td colspan="5" class="text-center no-data-found">-->
+                          <!--                          <div class="spinner-border" role="status">-->
+                          <!--                            <span class="sr-only">{{ 'Loading' | translate }}</span>-->
+                          <!--                          </div>-->
+                          <!--                        </td>-->
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="order-1"></div>
+                    <button class="page-button bn" (click)="nextPage(HistoriqueListe?.pageable?.pageNumber +(-1))"><-
+                        {{'Previous Page'|translate}}</button>
+                        <button class="page-button" (click)="nextPage(HistoriqueListe?.pageable?.pageNumber +1)">
+                          {{'Next Page'|translate}} -></button>
+                        <div class="pagination-info">
+                          {{'Pages'|translate}}: {{ (HistoriqueListe?.totalPages || 0) }}
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

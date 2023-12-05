@@ -1,0 +1,161 @@
+<div class="right_col" role="main">
+<div class="form-container" role="main">
+
+  <!--<mat-card class="example-card">-->
+  <img src="assets/images/digi3s-removebg-preview.png">
+
+  <form id="deviceForm" method="post">
+
+    <h2 style="font-size: 38px;
+          font-family: 'georgia';
+          font-weight: bold;
+          text-align: center">{{'Add Device' |translate}}</h2>
+    <button type="submit" class="btn btn-primary float-right add"
+            (click)="addDevice()">
+      <i class="fa fa-plus"></i> {{'Add' |translate}}
+    </button>
+    <label for="id">{{'macAdress'|translate}}:</label>
+    <input type="text" id="id" name="id" [(ngModel)]="device.macAdress"
+    appMacAddress required>
+    <small class="text-muted">e.g "AA-BB-CC-DD-EE-FF"</small>
+    <label for="nom"> {{'Name'|translate}} :</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="device.nom" required>
+
+    <label for="description"> {{'Location' |translate}}:</label>
+    <input type="text" id="description" name="description"
+           [(ngModel)]="device.description" required>
+
+    <label>{{'Sensors:' |translate}}</label>
+
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+          <tr class="headings">
+            <th>
+              <input type="checkbox" id="check-all" class="flat">
+            </th>
+
+            <th class="column-title">{{'Name'|translate}} </th>
+            <th class="column-title">{{'Range Minimale'|translate}}</th>
+            <th class="column-title">{{'Range Maximale'|translate}}</th>
+            <th class="column-title">{{'Unit'|translate}}</th>
+            <th class="column-title">{{'Symbole'|translate}} </th>
+
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr class="even pointer" *ngFor="let s of sensors; let i = index">
+            <td class="a-center ">
+              <input type="checkbox" class="flat" name="table_records"
+                     [value]='s.sensorId'
+                     (click)="checkedSensor(s.sensorId)">
+            </td>
+
+            <td>{{s.sensorName}}</td>
+            <td>{{s.rangeMin}}</td>
+            <td>{{s.rangeMax}}</td>
+            <td>{{s.unit}}</td>
+            <td>{{s.symboleUnite}}</td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <label for="ListAdmin">{{'List Admin:'|translate}}</label>
+    <select type="text" id="ListAdmin" name="ListAdmin"
+            [(ngModel)]="device.idAdmin">
+      <option value="{{list.id}}" *ngFor="let list of listAdm">{{
+        list.username }}</option>
+    </select>
+<div>
+    <div id="map-container">
+      <input type="text" id="search" name="search" [(ngModel)]="searchQuery"
+             placeholder=" {{'Search location'|translate}}" />
+      <button (click)="searchLocation()"> {{'Search'|translate}}</button>
+<!--      <label for="location"> {{'Location:'|translate}} </label>-->
+      <table class="tb">
+        <label for="location"> {{'Location:'|translate}} </label>
+        <tr>
+          <input type="text" id="location" name="location" [value]="lng"
+                     [disabled]=true [(ngModel)]="device.lng"
+                 required></tr>
+          <tr><input type="text" id="location1" name="location1" [value]="lat"
+                     [disabled]=true [(ngModel)]="device.lat"
+                     required></tr>
+      </table>
+      <div class="map-container" leaflet [leafletOptions]="options"
+           (leafletMapReady)="onMapReady($event)"
+           (leafletClick)="mapClicked($event)">
+        <div class="map-frame">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+</div>
+  </form>
+  <div class="success-message" id="successMessage">
+    {{'Device added successfully!'|translate}}
+  </div>
+  <div class="error-message" id="errorMessage">
+    {{'Failed to add device.'|translate}}
+  </div>
+
+  <!--</mat-card>-->
+
+</div>
+</div>
+<!--  <script async-->
+<!--          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP0Y_9Sle-4hDSxzfVwGxWlf7EHrf2uuA&callback=initMap">-->
+<!--  </script>-->
+
+<script src="https://unpkg.com/@googlemaps/js-api-loader@1.x/dist/index.min.js"></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.12/angular.min.js"></script>
+<script>
+  angular.module('deviceApp', [])
+    .controller('DeviceController', function ($scope, $http) {
+      // Fetch sensor data from the database
+      $http.get('/api/sensors')
+        .then(function (response) {
+          $scope.sensors = response.data;
+        })
+        .catch(function (error) {
+          console.error('Failed to fetch sensors:', error);
+        });
+
+      // Submit form data
+      $scope.submitForm = function () {
+        var formData = {
+          id: $scope.id,
+          nom: $scope.nom,
+          location: $scope.location,
+          images: $scope.images,
+          listCapteur: $scope.selectedSensors,
+        };
+
+        $http.post('/api/devices', formData)
+          .then(function (response) {
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Clear form fields
+            $scope.id = '';
+            $scope.nom = '';
+            $scope.location = '';
+            $scope.images = '';
+            $scope.selectedSensors = '';
+          })
+          .catch(function (error) {
+            // Show error message
+            document.getElementById('errorMessage').style.display = 'block';
+            console.error('Failed to add device:', error);
+          });
+      };
+    });
+</script>

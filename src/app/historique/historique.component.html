@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<div class="container">
+  <h1>Historical Records</h1>
+  <select name="pets" id="pet-select" #selectElem (change)="findBySensor(selectElem.value)">
+    <option value="">Select a Sensor</option>
+    <option *ngFor="let s of Sensors" [value]="s.sensorId">{{s.sensorName}}</option>
+  </select>
+  <button class="butt" (click)="generatePDF()">PDF</button>
+  <div class="table-responsive" style="max-height: 380px; /* Set the desired maximum height */
+  overflow-y: auto;">
+    <table class="table" id="records-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Action</th>
+          <th>Data Sensor</th>
+
+        </tr>
+      </thead>
+      <tbody id="records-body " *ngFor="let h of Historique">
+
+        <tr *ngFor="let h of h.content">
+          <td>{{h.id }}</td>
+          <td>{{h.date}}</td>
+          <td>{{h.action}}</td>
+          <td>{{h.dataSensor.growthStatus}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <a (click)="loadMore()" class="load-more-link">Load More</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>

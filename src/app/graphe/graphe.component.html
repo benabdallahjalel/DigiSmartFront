@@ -1,0 +1,26 @@
+<!--< class="graph-container1">-->
+<div class="header">
+
+</div>
+
+<div class="date-inputs">
+
+  <label for="startDate">{{'Start Date'|translate}}</label>
+  <input class="start" type="date" id="startDate" max="{{ getCurrentDate() }}" [(ngModel)]="startDate">
+
+
+  <label for="endDate">{{'End Date'|translate}} </label>
+  <input class="start" type="date" id="endDate" [(ngModel)]="endDate" [min]="startDate" max="{{ getCurrentDate() }}">
+  <button class="init-button" (click)="HistoriqueDate()"> {{'Graph'|translate}} </button>
+</div>
+
+<div class="graph-container">
+  <div class="chart-container">
+    <div class="loader" *ngIf="isLoading"></div>
+    <div class="chart" [chart]="chart"></div>
+  </div>
+</div>
+<div>
+  <button class="page-button prev" (click)="previousPage()"><- {{'Previous Page'|translate}}</button>
+  <button class="page-button" (click)="nextPage()"> {{'Next Page'|translate}} -></button>
+</div>

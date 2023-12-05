@@ -1,0 +1,38 @@
+.device-modification-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .device-modification-form h3 {
+    text-align: center;
+  }
+
+  .device-modification-form form {
+    margin-top: 20px;
+  }
+
+  .device-modification-form .form-group {
+    margin-bottom: 20px;
+  }
+
+  .device-modification-form label {
+    font-weight: bold;
+  }
+
+  .device-modification-form .btn-primary {
+    margin-right: 10px;
+  }
+
+  .device-modification-form .btn-secondary {
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+
+  .form-check-input{
+    margin-left: 20px;
+  }
+

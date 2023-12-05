@@ -1,0 +1,220 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>{{ 'Admins List' | translate }}</h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="{{ 'Search' | translate }}" [(ngModel)]="search"
+            (input)="filterAdmins()">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">{{ 'Search!' | translate }}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-plus"></i> {{ 'Add' | translate }}
+          </button>
+        </div>
+        <div class="card-body">
+          <!-- Add Admin Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{ 'Add New Admin' | translate }}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <app-createadmin></app-createadmin>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- View Options -->
+          <div class="btn-toolbar mb-3" role="toolbar">
+            <div class="btn-group mr-2" role="group">
+              <button class="btn btn-light" [ngClass]="{'active': !isGridView}" (click)="isGridView = false">
+                <i class="fa fa-list"></i>
+              </button>
+              <button class="btn btn-light" [ngClass]="{'active': isGridView}" (click)="isGridView = true">
+                <i class="fa fa-th"></i>
+              </button>
+            </div>
+          </div>
+          <p>{{ 'apc' | translate }}</p>
+
+          <!-- List View -->
+          <div *ngIf="!isGridView">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>
+                      <input type="checkbox" id="check-all" class="flat" hidden>
+                    </th>
+                     
+                    <th>{{ 'FullName' | translate }}</th>
+                    <th>{{ 'Email' | translate }}</th>
+                    <th>{{ 'Phone Number' | translate }}</th>
+                    <th>{{ 'State' | translate }}</th>
+                    <th>{{ 'Client Count' | translate }}</th>
+                    <th class="text-center">{{ 'Action' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of filteredAdmins | paginate: { itemsPerPage: 6, currentPage: p }">
+                    <td>
+                      <input type="checkbox" class="flat" name="table_records">
+                    </td>
+                     
+                    <td>{{ l.username.length > 20 ? (l.username | slice:0:20) +
+                      '...' : l.username }}</td>
+                    <td>{{ l.email.length > 20 ? (l.email | slice:0:20) + '...'
+                      : l.email }}</td>
+                    <td>
+                      <div *ngIf="l.telephone!=null; else BLOCKELSE">{{
+                        l.telephone }}</div>
+                      <ng-template #BLOCKELSE>{{ 'No phone' | translate }}</ng-template>
+                    </td>
+
+                    <td>
+                      <span class="badge badge-success">{{ 'Confirmed' | translate }} <i class="fa fa-check"></i></span>
+                    </td>
+    <app-client-count [adminId]="l.id"></app-client-count>
+                    <td class="text-center">
+
+                      <a href="/admin/{{l.id}}" class="btn btn-sm btn-primary"><i
+                          class="fas fa-eye"></i>{{ 'Clients' | translate }}</a> 
+                         
+                          
+                            <a (click)="delete(l.id)" class="btn btn-sm btn-danger" style="color: white;">
+                              <i class="fas fa-trash"></i> {{ 'Delete' | translate }}
+                            </a>
+                          
+                    </td>
+                  </tr>
+                  <tr *ngIf="message != 'DataLoaded'" class="text-center no-data-found">
+
+                    <td colspan="8" class="text-center no-data-found">
+                      {{ message }}
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">{{ 'Loading' | translate }}</span>
+                      </div>
+                    </td>
+
+                  </tr>
+
+                  <tr *ngIf="filteredAdmins.length === 0 && message == 'DataLoaded'">
+                    <td colspan="8" class="text-center no-data-found">
+                      {{ 'No Data Found' | translate }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-center">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+
+          <!-- Grid View -->
+          <div *ngIf="isGridView">
+            <div class>
+              <div class="clearfix"></div>
+              <div class="row">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <div class="clearfix"></div>
+                    <div class="even pointer"
+                      *ngFor="let l of filteredAdmins | paginate: { itemsPerPage: 6, currentPage: p }">
+                      <div class="col-md-4 col-sm-4 profile_details">
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i>{{ l.username.length > 20 ?
+                                (l.username | slice:0:20) + '...' : l.username
+                                }}</i></h4>
+                            <div class="left col-md-7 col-sm-7">
+                              <p><strong> {{ 'Email' | translate }} : </strong> {{ l.email.length >
+                                20 ? (l.email | slice:0:20) + '...' : l.email }}</p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"></i> {{ 'Address' | translate }}: {{l.address}}
+                                </li>
+                                <li><i class="fa fa-phone"></i>  {{ 'Phone' | translate }} : {{l.telephone}} </li>
+                              </ul>
+                            </div> 
+                            <div class="right col-md-5 col-sm-5 text-center"> 
+                                <img src="assets/avatar/man.png" alt=""
+                                  class="img-circle img-fluid">
+                              <!-- <img *ngIf="l.genre.toLowerCase() === 'homme' || 'male' || 'man' " src="assets/avatar/man.png" alt=""
+                                class="img-circle img-fluid">
+                              <img *ngIf="l.genre.toLowerCase() === 'femme' || 'female' " src="assets/avatar/female.png" alt=""
+                                class="img-circle img-fluid"> -->
+      
+                            </div>
+                          </div>
+                          <div class="profile-bottom text-center">
+                            <div class="col-sm-6 emphasis">
+
+                              <button type="button" class="btn btn-primary btn-sm" routerLink="/admin/{{l.id}}">
+                                <i class="fa fa-users"> </i>{{ 'Clients' | translate }}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="message != 'DataLoaded'" class="text-center no-data-found">
+                      {{ message }}
+                    </div>
+                    <div *ngIf="filteredAdmins.length === 0" class="text-center no-data-found">
+                      {{ 'No Data Found' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- alert  --> 
+  <div class="alert alert-success d-flex align-items-center" *ngIf="successAlertVisible" role="alert">
+    {{ 'Customer account deleted successfully!' | translate }}
+    <button type="button" class="close align-self-start ml-auto" (click)="closeSuccessAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <div class="alert alert-danger d-flex align-items-center" *ngIf="errorAlertVisible" role="alert">
+    {{ 'An error occurred while deleting the account!' | translate }}
+    <button type="button" class="close align-self-start ml-auto" (click)="closeErrorAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  

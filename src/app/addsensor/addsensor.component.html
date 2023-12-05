@@ -1,0 +1,168 @@
+
+<div class="right_col" role="main">
+  <div class>
+    <div class="page-title">
+      <div class="title_left">
+        <h3> {{'Form Elements'|translate}}</h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+<!--          <div class="input-group">-->
+<!--&lt;!&ndash;            <input type="text" class="form-control" placeholder="{{'Search'|translate}}">&ndash;&gt;-->
+<!--            <span class="input-group-btn">-->
+<!--              <button class="btn btn-default" type="button">{{'Search!'|translate}}</button>-->
+<!--            </span>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2> {{'Create new Sensor '|translate}} </h2>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+            <form id="demo-form2" data-parsley-validate
+              class="form-horizontal form-label-left" #form="ngForm">
+
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                  for="first-name">{{'Name'|translate}} <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="text" id="nom" name="nom" required
+                    [(ngModel)]="sensor.sensorName" #name='ngModel'
+                    class="form-control ">
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                  for="first-name">{{'Range Min' |translate}} <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="text" id="minvalue" name="minvalue"
+                    [(ngModel)]="sensor.rangeMin" [disabled]="checkboxChecked" required
+                    class="form-control ">
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                  for="first-name">{{'Range Max' |translate}} <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="text" id="maxvalue" name="maxvalue"
+                    [(ngModel)]="sensor.rangeMax" [disabled]="checkboxChecked" required
+                    class="form-control ">
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                  for="first-name"> {{'Unit' |translate}} <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <select type="text" id="unite" name="unite" required
+                    [(ngModel)]="sensor.unit" class="form-control ">
+                    <option value>{{'Select a sensor'|translate}}</option>
+                    <option value="DEGREE_CELSIUS"> DEGREE_CELSIUS</option>
+                    <option value="MILI_AMPER">MILI_AMPER</option>
+                    <option value="MILI_VOLT">MILI_VOLT</option>
+                    <option value="MILI_GRAM_Par_LITRE">MILI_GRAM_Par_LITRE</option>
+                    <option value="MILI_SEC_PAR_CM">MILI_SEC_PAR_CM</option>
+                    <option value="P_P_M">P_P_M</option>
+                    <option value="MILI_GRAM_OX_Par_LITRE">MILI_GRAM_OX_Par_LITRE</option>
+                    <option value="GRAM_PAR_LITRE">GRAM_PAR_LITRE</option>
+                    <option value="N_T_U">N_T_U</option>
+                    <option value="B_A_R">B_A_R</option>
+                    <option value="METRE_CUBE_PAR_HEURE">METRE_CUBE_PAR_HEURE
+                    </option>
+                    <option value="KILO_GRAMM">KILO_GRAMM</option>
+                    <option value="Litre_par_seconde">Litre_par_seconde</option>
+                    <option value="Gallon_par_minute">Gallon_par_minute</option>
+                    <option value="Pied_cube_par_seconde">Pied_cube_par_seconde</option>
+                    <option value="Mètre_cube_par_jour">Mètre_cube_par_jour</option>
+                    <option value="Gallon_par_jour">Gallon_par_jour</option>
+                    <option value="Litre_par_minute">Litre_par_minute</option>
+                    <option value="Livre_par_pouce_carré">Livre_par_pouce_carré</option>
+                    <option value="Atmosphère">Atmosphère</option>
+                    <option value="Millimètre_de_mercure">Millimètre_de_mercure</option>
+                    <option value="Degré_Fahrenheit">Degré_Fahrenheit</option>
+                    <option value="Kelvin">Kelvin</option>
+                    <option value="Microsiemens_par_centimètre">Microsiemens_par_centimètre</option>
+                    <option value="Millisiemens_par_centimètre">Millisiemens_par_centimètre</option>
+                    <option value="Siemens_par_mètre">Siemens_par_mètre</option>
+                    <option value="Mètre">Mètre</option>
+                    <option value="Centimètre">Centimètre</option>
+                    <option value="Pied">Pied</option>
+                    <option value="Pouce">Pouce</option>
+                    <option value="Jackson_Turbidity_Unit">Jackson_Turbidity_Unit</option>
+                    <option value="Pratique_des_parties_par_mille">Pratique_des_parties_par_mille</option>
+                    <option value="Pourcentage">Pourcentage</option>
+                    <option value="Litre">Litre</option>
+                    <option value="Mètre_cube">Mètre_cube</option>
+                    <option value="Gallon">Gallon</option>
+                    <option value="Millilitr">Millilitr</option>
+                    <option value="Kilogramme_par_mètre_cub">Kilogramme_par_mètre_cub</option>
+                    <option value="Gramme_par_centimètre_cube">Gramme_par_centimètre_cube</option>
+                    <option value="Centipoise">Centipoise</option>
+                    <option value="Millipascal_seconde">Millipascal_seconde</option>
+                    <option value="Unité_de_couleur">Unité_de_couleur</option>
+                    <option value="Hazen">Hazen</option>
+                    <option value="Lovibond">Lovibond</option>
+                    <option value="Partie_par_milliard">Partie_par_milliard</option>
+                  </select>
+                </div>
+              </div>
+              <div class="item form-group" *ngIf="sensor.isPulse">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" >Compteur Ref</label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="number" name="pulseInit"   class="form-control checkbox" [(ngModel)]="sensor.pulseInit">
+                </div>
+              </div>
+              <div class="item form-group" *ngIf="sensor.isPulse">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" >Pulse Value</label>
+                <div class="col-md-6 col-sm-6 ">
+                  <select  name="pulseValue"   class="form-control checkbox" [(ngModel)]="sensor.pulseValue">
+                    <option value="0.5">0.5</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" >Pulse</label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="checkbox" name="pulse" value="pulse" (change)="toggleInputs1()" class="form-control checkbox">
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                  for="first-name"> {{'Default value'|translate}}: <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="checkbox" id="checkbox" name="checkbox"
+                    (change)="toggleInputs()" class="form-control checkbox">
+                </div>
+              </div>
+              <div class="ln_solid"></div>
+              <div class="item form-group">
+                <div class="col-md-6 col-sm-6 offset-md-3">
+                  <a routerLink="/sensor/liste" class="btn btn-primary" > {{'Cancel'|translate}} </a>
+
+                  <button type="submit" class="btn btn-success" [disabled]="form.invalid"
+                    (click)="onFormSubmit()">{{'Submit'|translate}} </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

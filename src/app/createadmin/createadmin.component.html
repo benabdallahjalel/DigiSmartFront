@@ -1,0 +1,101 @@
+<div class="right_col" role="main">
+<form id="form" action="login" method="post" data-parsley-validate class="form-horizontal form-label-left" #form="ngForm">
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <br />
+
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="Username">{{ 'Username' | translate }} <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+              <input type="text" [(ngModel)]="user.username" id="Username" name="Username" required="required" class="form-control"
+                #username="ngModel" required minlength="5" (blur)="username.control.markAsTouched()">
+              <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                <div *ngIf="username.errors?.['required']" class="error-message">{{ 'Username cannot be empty' | translate }}</div>
+                <div *ngIf="username.errors?.['minlength']" class="error-message">{{ 'Username must be at least 5 characters long' | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="Email">{{ 'Email' | translate }} <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+              <input type="email" [(ngModel)]="user.email" id="Email" name="Email" required class="form-control" #email="ngModel"
+                (blur)="email.control.markAsTouched()" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.['required']" class="error-message">{{ 'Email cannot be empty' | translate }}</div>
+                <div *ngIf="email.errors?.['pattern']" class="error-message">{{ 'Invalid email format' | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="telephone">{{ 'telephone' | translate }} <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+              <input type="string" [(ngModel)]="user.telephone" id="telephone" name="telephone" required class="form-control" #telephone="ngModel">
+              <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)">
+                <div *ngIf="telephone.errors?.['required']" class="error-message">{{ 'telephone cannot be empty' | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="adresse">{{ 'adresse' | translate }} <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+              <input type="string" [(ngModel)]="user.adresse" id="adresse" name="adresse" required class="form-control" #adresse="ngModel">
+              <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)">
+                <div *ngIf="adresse.errors?.['required']" class="error-message">{{ 'adresse cannot be empty' | translate }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="genre">{{ 'genre' | translate }} <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+              <select type="string" [(ngModel)]="user.genre" id="genre" name="genre" required class="form-control" #genre="ngModel">
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+              </select>
+            
+              
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label for="password" class="col-form-label col-md-3 col-sm-3 label-align">{{ 'Password' | translate }}</label>
+            <div class="col-md-6 col-sm-6">
+              <input id="password" class="form-control" type="password" name="password" required minlength="8" #passwordInput [(ngModel)]="user.password">
+              <div *ngIf="passwordInput.value && passwordInput.value.length < 8" class="error-message">
+                {{ 'Password must be at least 8 characters long' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label for="Cpassword" class="col-form-label col-md-3 col-sm-3 label-align">{{ 'Confirm Password' | translate }}</label>
+            <div class="col-md-6 col-sm-6">
+              <input id="Cpassword" class="form-control" type="password" name="Cpassword" required #CpasswordInput
+                (input)="checkPasswordMatch(passwordInput.value, CpasswordInput.value)">
+              <div *ngIf="passwordMismatch" class="error-message">{{ 'Passwords do not match' | translate }}</div>
+            </div>
+          </div>
+
+          <div class="ln_solid"></div>
+
+          <div class="item form-group">
+            <div class="col-md-6 col-sm-6 offset-md-3">
+              <button class="btn btn-primary" type="reset">{{ 'Reset' | translate }}</button>
+              <button type="submit" (click)="createNewAdmin()" class="btn btn-success" [disabled]="!form?.valid || !form?.dirty">
+                {{ 'Create' | translate }}
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

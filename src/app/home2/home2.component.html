@@ -1,0 +1,36 @@
+
+<div class="right_col" role="main">
+
+
+<div class="container-fluid py-2" >
+  <div class="row mt-18" style="position: absolute">
+    <div class="col-9" >
+      <div id="chart-gauge"></div>
+    </div></div>
+    <ul class="home">
+      <li class="home_m" *ngFor="let device of listDevice">
+        <h3>{{ device.nom }}</h3>
+        <p>Description: {{ device.Description }}</p>
+        <p>Location: {{ device.Location }}</p>
+        <p>Active: {{ device.active ? 'Yes' : 'No' }}</p>
+        <p>Sensors:</p>
+        <ul>
+          <li class="home_m" *ngFor="let sensor of device.sensorList"><button class="links">{{ sensor }}</button></li>
+        </ul>
+      </li>
+    </ul>
+<!--    <div class="col-6">-->
+<!--      <div id="chart-pie"></div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row mt-5">-->
+<!--    <div class="col-6">-->
+<!--      <div id="chart-column"></div>-->
+<!--    </div>-->
+<!--    <div class="col-6">-->
+<!--      <div id="chart-line"></div>-->
+<!--    </div>-->
+  </div>
+
+</div>
+

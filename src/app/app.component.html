@@ -1,0 +1,20 @@
+<body class="nav-md">
+    <div class="container body">
+      <div class="main_container" style="background-color: white;">
+        <div class="col-md-3 left_col  menu_fixed" *ngIf="showElements">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title">
+                <i class="fa-solid fa-droplet" style="color: #ffffff;"></i>
+               <span  style="font-family:'Trebuchet MS';font-size:18px; margin-left: 5px;">Digi Smart Solutions</span></a>
+            </div>
+            <div class="clearfix"></div>
+            <app-side-bar></app-side-bar>
+          </div>
+        </div>
+
+        <div *ngIf="showElements">
+          <app-top-nav></app-top-nav>
+        </div>
+        <router-outlet></router-outlet>
+  <app-footer *ngIf="showElements" ></app-footer>

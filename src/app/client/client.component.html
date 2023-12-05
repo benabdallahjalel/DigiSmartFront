@@ -1,0 +1,373 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>{{ 'Clients List' | translate }} </h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="{{ 'Search' | translate }}" [(ngModel)]="search"
+            (input)="filterClients()">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">{{ 'Search!' | translate }} </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+
+   
+
+  <div *ngIf="!isGridView">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" id="check-all" class="flat" hidden>
+            </th>
+             
+            <th>{{ 'FullName' | translate }}</th>
+            <th>{{ 'Email' | translate }}</th>
+            <th> {{ 'Phone Number' | translate }}</th>
+            <th>{{ 'State' | translate }}</th>
+            <th>{{ 'Admin' | translate }}</th>
+            <th class="text-center">{{ 'Actions' | translate }}</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr class="even pointer" *ngFor="let l of filteredClients | paginate: { itemsPerPage: 6, currentPage: p }">
+  
+            <td>
+              <input type="checkbox" class="flat" name="table_records">
+            </td>
+  
+         
+            <td>{{ l.username.length > 20 ? (l.username | slice:0:20) + '...' : l.username }}</td>
+            <td>{{ l.email.length > 20 ? (l.email | slice:0:20) + '...' : l.email }}</td>
+            <td>{{l.telephone}}</td>
+            <td *ngIf="l.enabled == true">{{ 'Confirmed' | translate }} <i class="success fa fa-check"></i></td>
+            <td *ngIf="l.enabled == false">{{ 'Unconfirmed' | translate }} <i class="success fa fa-close"></i></td>
+  
+            <td class="a-right a-right">{{ l.admin.username }}</td>
+            <td class="text-center">
+              <a (click)="GoTOClientDetails(l.id)" class="btn btn-success btn-sm" style="color: white;">
+                <i class="fa fa-info"></i> {{ 'Detail' | translate }}
+              </a>
+  
+              <a (click)="delete(l.id)" class="btn btn-danger btn-sm" style="color: white;">
+                <i class="fas fa-trash"></i> {{ 'Delete' | translate }}
+              </a>
+            </td>
+          </tr>
+          <tr *ngIf="message != 'DataLoaded'"
+          class="text-center no-data-found">
+
+          <td colspan="8" class="text-center no-data-found">
+             
+            <div class="spinner-border" role="status">
+              <span class="sr-only"> {{ 'Loading' | translate }}</span>
+            </div>
+          </td>
+
+        </tr>
+          <tr *ngIf="filteredClients.length === 0 && message == 'DataLoaded'">
+            <td colspan="8" class="text-center no-data-found">
+              {{ 'No Data Found' | translate }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  
+
+                      
+                                  <!-- End table view -->
+
+  <!-- grid view -->
+
+       <div *ngIf="isGridView">
+  <div class="">
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="x_panel">
+        <div class="x_content">
+
+          <div class="clearfix"></div>
+          <div class="even pointer" *ngFor="let l of filteredClients | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div class="col-md-4 col-sm-4 profile_details">
+              <div class="well profile_view">
+                <div class="col-sm-12">
+                  <h4 class="brief"><i>{{ l.username.length > 20 ? (l.username | slice:0:20) + '...' : l.username }}</i></h4>
+                  <div class="left col-md-7 col-sm-7">
+
+                    <p><strong>{{ 'Email' | translate }} : : </strong> {{ l.email.length > 20 ? (l.email | slice:0:20) + '...' : l.email }} </p>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-building"></i> {{ 'Address' | translate }}: </li>
+                      <li><i class="fa fa-phone"></i>  {{ 'Phone' | translate }} #: {{l.telephone}} </li>
+                      <li><i class="fa fa-user"></i> {{ 'Admin' | translate }} : {{ l.admin.username}}</li>
+                    </ul>
+                  </div>
+                  <div class="right col-md-5 col-sm-5 text-center">
+                    <img *ngIf="l.genre.toLowerCase() === 'homme' || 'male' || 'man' " src="assets/avatar/man.png" alt="" class="img-circle img-fluid">
+                    <img *ngIf="l.genre.toLowerCase() === 'femme' || 'female' " src="assets/avatar/female.png" alt="" class="img-circle img-fluid">
+
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <app-createclient></app-createclient>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- View Options -->
+          <div class="btn-toolbar mb-3" role="toolbar">
+            <div class="btn-group mr-2" role="group">
+              <button class="btn btn-light" [ngClass]="{'active': !isGridView}" (click)="isGridView = false">
+                <i class="fa fa-list"></i>
+              </button>
+              <button class="btn btn-light" [ngClass]="{'active': isGridView}" (click)="isGridView = true">
+                <i class="fa fa-th"></i>
+              </button>
+            </div>
+          </div>
+          <p> {{ 'cpc' | translate }}</p>
+
+
+          <!-- table view -->
+
+
+
+          <div *ngIf="!isGridView">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>
+                      <input type="checkbox" id="check-all" class="flat" hidden>
+                    </th>
+                    
+                    <th>{{ 'FullName' | translate }}</th>
+                    <th>{{ 'Email' | translate }}</th>
+                    <th> {{ 'Phone Number' | translate }}</th>
+                    <th>{{ 'State' | translate }}</th>
+                    <th>{{ 'Admin' | translate }}</th>
+                    <th class="text-center">{{ 'Actions' | translate }}</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr class="even pointer"
+                    *ngFor="let l of filteredClients | paginate: { itemsPerPage: 6, currentPage: p }">
+
+                    <td>
+                      <input type="checkbox" class="flat" name="table_records">
+                    </td>
+
+                    
+                    <td>{{ l.username.length > 20 ? (l.username | slice:0:20) + '...' : l.username }}</td>
+                    <td>{{ l.email.length > 20 ? (l.email | slice:0:20) + '...' : l.email }}</td>
+                    <td>
+                      <div *ngIf="l.telephone!=null; else BLOCKELSE">{{
+                        l.telephone }}</div>
+                      <ng-template #BLOCKELSE>{{ 'No phone' | translate }}</ng-template>
+                    </td>
+                    <td *ngIf="l.enabled == true">{{ 'Confirmed' | translate }} <i class="success fa fa-check"></i></td>
+                    <td *ngIf="l.enabled == false">{{ 'Unconfirmed' | translate }} <i class="success fa fa-close"></i>
+                    </td>
+
+                    <td class="a-right a-right">{{ l.admin.username }}</td>
+                    <td class="text-center">
+                      <a (click)="GoTOClientDetails(l.id)" class="btn btn-success btn-sm">
+                        <i class="fa fa-info"></i> {{ 'Detail' | translate }}
+                      </a>
+
+                      <a (click)="delete(l.id)" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i> {{ 'Delete' | translate }}
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="message != 'DataLoaded'" class="text-center no-data-found">
+
+                    <td colspan="8" class="text-center no-data-found">
+
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only"> {{ 'Loading' | translate }}</span>
+                      </div>
+                    </td>
+
+                  </tr>
+                  <tr *ngIf="filteredClients.length === 0 && message == 'DataLoaded'">
+                    <td colspan="8" class="text-center no-data-found">
+                      {{ 'No Data Found' | translate }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-center">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+
+
+
+          <!-- End table view -->
+
+          <!-- grid view -->
+
+          <div *ngIf="isGridView">
+            <div class="">
+              <div class="clearfix"></div>
+
+              <div class="row">
+                <div class="x_panel">
+                  <div class="x_content">
+
+                    <div class="clearfix"></div>
+                    <div class="even pointer"
+                      *ngFor="let l of filteredClients | paginate: { itemsPerPage: 6, currentPage: p }">
+                      <div class="col-md-4 col-sm-4 profile_details">
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i>{{ l.username.length > 20 ? (l.username | slice:0:20) + '...' :
+                                l.username }}</i></h4>
+                            <div class="left col-md-7 col-sm-7">
+
+                              <p><strong>{{ 'Email' | translate }} : : </strong> {{ l.email.length > 20 ? (l.email |
+                                slice:0:20) + '...' : l.email }} </p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"></i> {{ 'Address' | translate }}: </li>
+                                <li><i class="fa fa-phone"></i> {{ 'Phone' | translate }} #: 99 999 999 </li>
+                                <li><i class="fa fa-user"></i> {{ 'Admin' | translate }} : {{ l.admin.username}}</li>
+                              </ul>
+                            </div>
+                            <div class="right col-md-5 col-sm-5 text-center">
+                              <img *ngIf="l.genre.toLowerCase() === 'homme' || 'male' || 'man' "
+                                src="assets/avatar/man.png" alt="" class="img-circle img-fluid">
+                              <img *ngIf="l.genre.toLowerCase() === 'femme' || 'female' " src="assets/avatar/female.png"
+                                alt="" class="img-circle img-fluid">
+
+                            </div>
+                          </div>
+                          <div class="profile-bottom text-center">
+                            <div class="col-sm-6 emphasis">
+                              <button type="button" class="btn btn-success btn-sm"
+                                routerLink="/profile/Detail/{{ l.id }}">
+                                <i class="fa fa-info"></i> {{ 'Detail' | translate }}
+                              </button>
+
+                              <button type="button" class="btn btn-danger btn-sm" (click)="delete(l.id)">
+                                <i class="fa fa-trash"></i> {{ 'Delete' | translate }}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="filteredClients.length === 0" class="text-center no-data-found">
+                      {{ 'No Data Found' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+
+
+
+
+
+
+          <!-- end grid view -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+  <div class="alert alert-success d-flex align-items-center" *ngIf="successAlertVisible" role="alert">
+    {{ 'Customer account deleted successfully!' | translate }}
+    <button type="button" class="close align-self-start ml-auto" (click)="closeSuccessAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="alert alert-danger d-flex align-items-center" *ngIf="errorAlertVisible" role="alert">
+    {{ 'An error occurred while deleting the account!' | translate }}
+    <button type="button" class="close align-self-start ml-auto" (click)="closeErrorAlert()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    
+                           
+                          
+                       
+                    </div>
+                     
+                    
+                   
+                    
+                      
+                    <div class="alert alert-success d-flex align-items-center" *ngIf="successAlertVisible" role="alert">
+                      {{ 'Customer account deleted successfully!' | translate }}
+                        <button type="button" class="close align-self-start ml-auto" (click)="closeSuccessAlert()" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      
+                      <div class="alert alert-danger d-flex align-items-center" *ngIf="errorAlertVisible" role="alert">
+                        {{ 'An error occurred while deleting the account!' | translate }}
+                        <button type="button" class="close align-self-start ml-auto" (click)="closeErrorAlert()" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+              
+                   </div>
+                   
+                   
+                      
+            
+                   
+         

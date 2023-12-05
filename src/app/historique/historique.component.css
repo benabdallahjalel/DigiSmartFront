@@ -1,0 +1,32 @@
+body {
+  padding: 0px;
+}
+
+.container {
+  width: 70%;
+  margin-right: 10%;
+  margin-left: 20%;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+#pet-select{
+  margin-bottom: 40px}
+.butt{
+  display: flex;
+  position: absolute;
+  right: 30px;
+}
+.text-center {
+  text-align: center;
+}
+.load-more-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.load-more-link:hover {
+  color: #1ABB9C  !important;
+}

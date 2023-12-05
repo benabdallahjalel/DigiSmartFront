@@ -1,0 +1,21 @@
+<div class="sidebar-footer hidden-small">
+  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="Lock">
+    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+  </a>
+  <div class="dropdown">
+    <a data-toggle="dropdown" data-placement="top" title="Language">
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li [class.selected]="selectedLang === 'fr'"><a href="#" (click)="changeLang('fr')">Fr</a></li>
+      <li [class.selected]="selectedLang === 'ar'"><a href="#" (click)="changeLang('ar')">ع</a></li>
+      <li [class.selected]="selectedLang === 'en'"><a href="#" (click)="changeLang('en')">En</a></li>
+    </ul>
+  </div>
+  <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+  </a>
+</div>

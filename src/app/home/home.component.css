@@ -1,0 +1,146 @@
+/* Reset some default styles */
+/*.home{*/
+/*  width: 100%;*/
+/*  margin-left: 20%;*/
+/*}*/
+
+h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.hero {
+  /*background-image: url('your-hero-image.jpg');*/
+  background-image: url('src/assets/images/digi22.png');
+  /* Set the size of the background image */
+  background-size: cover; /* You can use "cover" to scale the image to cover the entire section */
+  /* Set the position of the background image */
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+}
+
+.hero h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.about, .services, .contact {
+  background-color: #fff;
+  padding: 40px;
+}
+
+.about h2, .services h2, .contact h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.services ul {
+  font-size: 1.2em;
+}
+
+footer {
+  background-color: #34495e;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+/* Additional styles for the contact section */
+
+.contact {
+  background-color: #f9f9f9;
+  padding: 40px;
+}
+
+.contact-content {
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contact form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact input,
+.contact textarea,
+.contact button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact textarea {
+  resize: vertical;
+}
+
+.contact button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background-color: #258cd1;
+}
+/* Additional styles for responsiveness */
+@media screen and (max-width: 600px) {
+  .contact form {
+    max-width: 90%;
+  }
+}

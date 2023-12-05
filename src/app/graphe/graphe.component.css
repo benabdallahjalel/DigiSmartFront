@@ -1,0 +1,231 @@
+/* Conteneur principal du graphique */
+.graph-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* En-tête */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* Bouton "Init" */
+.init-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* Conteneur des inputs de date */
+.date-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10%;
+}
+
+/* Style pour chaque input de date */
+.date-input {
+  margin: 0 10px;
+}
+
+.start {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Label des inputs de date */
+.date-input label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Conteneur du graphique */
+.chart-container {
+  position: relative;
+}
+
+/* Spinner */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Affiche le spinner lorsqu'il est actif */
+.chart-container .loader {
+  display: block;
+}
+
+/* Style pour le graphique */
+.chart {
+  width: 100%;
+  height: 400px;
+}
+.prev{
+  margin-left: 75%
+}
+
+/* Animation du spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media query for maximum width 480px (mobile phones) */
+@media screen and (max-width: 480px) {
+  .flag-image {
+    width: 20px;
+    height: 20px;
+  }
+
+  .dropdown-toggle.flag-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .dropdown-toggle.flag-button:focus,
+  .dropdown-toggle.flag-button:active {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .dropdown-toggle.flag-button::after {
+    display: none;
+  }
+
+  .dropdown-toggle.flag-button:focus {
+    box-shadow: none !important;
+  }
+
+  .graph-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .init-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 70px;
+  }
+
+  .date-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 10%;
+  }
+
+  .date-input {
+    margin: 0 10px;
+  }
+
+  .start {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .date-input label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .chart-container {
+    position: relative;
+  }
+
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .chart-container .loader {
+    display: block;
+  }
+
+  .chart {
+    width: 100%;
+    height: 400px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+@media screen and (max-width: 850px){
+  .prev{
+    margin-left: 65%;
+  }
+}
+@media screen and (max-width: 700px){
+  .prev{
+    margin-left: 50%;
+  }
+  .date-inputs{
+    display: block;
+    padding-left: 17%;
+  }
+  .init-button{
+    margin-left: 35%;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 440px){
+  .prev{
+    margin-left: 40%;
+  }
+}

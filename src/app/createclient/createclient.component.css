@@ -1,0 +1,49 @@
+/* Form Styles */
+.form-horizontal .col-form-label {
+  text-align: right;
+}
+
+.form-horizontal .form-group {
+  margin-bottom: 15px;
+}
+
+.form-horizontal .label-align {
+  padding-top: 7px;
+}
+
+.form-horizontal .item .required {
+  color: red;
+}
+
+.form-horizontal .ln_solid {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-horizontal .alert {
+  margin-top: 20px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #357ebd;
+  border-color: #357ebd;
+}
+
+.btn-success {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #449d44;
+  border-color: #449d44;
+}

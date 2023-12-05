@@ -1,0 +1,59 @@
+/* Form Styles */
+.x_panel {
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    padding: 10px;
+  }
+  
+  .x_panel .x_content {
+    padding: 0;
+  }
+  
+  .x_panel .form-horizontal .col-form-label {
+    text-align: right;
+  }
+  
+  .x_panel .form-horizontal .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .x_panel .form-horizontal .label-align {
+    padding-top: 7px;
+  }
+  
+  .x_panel .form-horizontal .item .required {
+    color: red;
+  }
+  
+  .x_panel .form-horizontal .ln_solid {
+    border-top: 1px solid #e5e5e5;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .x_panel .form-horizontal .item.form-group .col-md-6 {
+    margin-bottom: 0;
+  }
+  
+  .x_panel .btn-primary {
+    background-color: #428bca;
+    border-color: #428bca;
+  }
+  
+  .x_panel .btn-primary:hover,
+  .x_panel .btn-primary:focus {
+    background-color: #357ebd;
+    border-color: #357ebd;
+  }
+  
+  .x_panel .btn-success {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+  }
+  
+  .x_panel .btn-success:hover,
+  .x_panel .btn-success:focus {
+    background-color: #449d44;
+    border-color: #449d44;
+  }
+  

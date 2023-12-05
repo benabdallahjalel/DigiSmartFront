@@ -1,0 +1,51 @@
+<!-- menu profile quick info -->
+<div class="profile clearfix">
+  <div class="profile_pic">
+    <!-- <img *ngIf="genre.toLowerCase() === 'homme' || 'male' || 'man' " src="assets/avatar/man.png" alt=""
+    class="img-circle img-fluid">
+  <img *ngIf="genre.toLowerCase() === 'femme' || 'female' " src="assets/avatar/female.png" alt=""
+    class="img-circle img-fluid"> -->
+    <img src="assets/avatar/man.png" alt="" class="img-circle profile_img">
+
+  </div>
+  <div class="profile_info">
+    <span>{{ 'welcome' | translate }},</span>
+    <h2>{{ username }}</h2>
+  </div>
+</div>
+<!-- /menu profile quick info -->
+
+<br />
+<!-- sidebar menu -->
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+  <div class="menu_section">
+    <h3>{{ 'General' | translate }}</h3>
+    <ul class="nav side-menu">
+      <li *ngIf="!role.includes('x')"><a routerLink="/home"><i class="fa fa-home"></i> {{ 'Home' | translate }} </a>
+      <li *ngIf="role.includes('x')"><a routerLink="/login"><i class="fa fa-home"></i> {{ 'Login' | translate }} </a>
+
+      </li>
+      <li *ngIf="!role.includes('CLIENT') && !role.includes('x')"><a><i class="fa fa-users"></i> {{ 'Users' | translate
+          }} <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+
+          <li *ngIf="role.includes('SUPER_ADMIN')"><a routerLink="/admin">{{ 'Admins' | translate }}</a></li>
+          <li><a routerLink="/client"> {{ 'Clients' | translate }}</a></li>
+        </ul>
+      </li>
+      <li *ngIf="!role.includes('x')"><a><i class="fa fa-microchip"></i> {{ 'Devices' | translate }} <span
+            class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a routerLink="devices/liste"> {{ 'Devices List' | translate }}</a></li>
+          <li *ngIf="role.includes('SUPER_ADMIN')"><a routerLink="sensor/liste">{{ 'Sensor List' | translate }}</a></li>
+          <!--            <li><a routerLink="/historique">{{ 'Historic' | translate }}</a></li>-->
+        </ul>
+      </li>
+      <li *ngIf="!role.includes('x')"><a routerLink="/home2"><i class="fa fa-bug"></i> {{ 'Claims' | translate }}</a>
+      </li>
+
+
+    </ul>
+  </div>
+
+</div>

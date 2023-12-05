@@ -1,0 +1,11 @@
+<div class="right_col" role="main">
+<div class="sensor-details-container" *ngIf="sensor">
+  <h2>{{ sensor.sensorName }}</h2>
+  <p><strong>{{'Range'|translate}}:</strong> {{ sensor.rangeMin }} - {{ sensor.rangeMax }} {{ sensor.symboleUnite }}</p>
+  <p><strong> {{'Unit'|translate}}:</strong> {{ sensor.unit }}</p>
+  <p><strong>{{'Signal'|translate}}:</strong> {{ sensor.signal ? 'Active' : 'Inactive' }}</p>
+  <p><strong> {{'Co-efficients (a, b)'|translate}}:</strong> {{ sensor.a }}, {{ sensor.b }}</p>
+  <p><strong> {{'Is Pulse'|translate}} :</strong> {{ sensor.isPulse ? 'Yes' : 'No' }}</p>
+  <p *ngIf="sensor.isPulse"><strong> {{'Pulse Value'|translate}} :</strong> {{ sensor.pulseValue }}</p>
+</div>
+</div>

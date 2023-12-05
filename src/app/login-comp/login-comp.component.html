@@ -1,0 +1,90 @@
+<ul>
+  <li>
+    <div class="dropdown_item form-group text-right">
+      <div class="col-md-1 col-sm-1">
+        <button class="btn btn- btn-sm dropdown-toggle flag-button" type="button" id="langDropdown"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="assets/flag/{{ lang }}.png" alt="" class="flag-image small-image">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="langDropdown">
+          <button class="dropdown-item small-button" (click)="changeLang('en')">
+
+            <img src="assets/flag/en.png" alt="" class="flag-image small_image ">
+            {{ 'English' | translate }}
+          </button>
+          <button class="dropdown-item small-button" (click)="changeLang('fr')">
+            <img src="assets/flag/fr.png" alt="" class="flag-image small_image">
+            {{ 'French' | translate }}
+          </button>
+          <button class="dropdown-item small-button" (click)="changeLang('ar')">
+            <img src="assets/flag/ar.png" alt="" class="flag-image small-image ">
+            {{ 'Arabic' | translate }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+<body class="login">
+
+<a class="hiddenanchor" id="signup"></a>
+<a class="hiddenanchor" id="signin"></a>
+
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <section class="login_content">
+      <app-alert *ngIf="showAlert" [color]="alertColor">{{alertMsg}}</app-alert>
+      <div classe="alert alert-danger" color="red"> {{err}} </div>
+      <form action="login" method="post">
+        <h1> {{'Login'|translate}} </h1>
+        <div>
+          <input type="text" class="form-control" [(ngModel)]="login.email" placeholder="{{'Username'|translate}}"
+                 name="Username" />
+        </div>
+        <div style=" position: relative;
+          width: 100%;">
+          <input [type]="changetype?'password':'text'" class="form-control" [(ngModel)]="login.password"
+                 placeholder="{{'Password'|translate}}" name="Password" />
+          <span style=" position: absolute;
+            right: 9px;
+            top: 10px;
+            cursor: pointer;" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+
+        </div>
+        <div>
+          <button class="btn" (click)="submit()" class="btn">
+            <span> {{'Login'|translate}}</span>
+          </button>
+
+          <a class="reset_pass" routerLink='/forgetpassword'> {{'Lost your password?'|translate}} </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="separator">
+
+
+          <div class="clearfix"></div>
+          <br />
+
+          <div>
+            <img style="height: 95px; width: 200px; margin-bottom: 10px;" src="assets/images/logo1-digi.png"
+                 alt="Digi2" class="custom-icon">
+            <p> {{'©2023 All Rights Reserved.'|translate}}<a href="https://dig2s.com/"> DIGI2S! </a></p>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+
+</div>
+
+
+
+</body>

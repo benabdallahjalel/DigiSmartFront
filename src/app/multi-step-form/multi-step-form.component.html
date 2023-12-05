@@ -1,0 +1,166 @@
+<div class="x_content">
+
+    <!-- Smart Wizard -->
+
+    <div id="wizard" class="form_wizard wizard_horizontal">
+        <ul class="wizard_steps anchor">
+            <li>
+                <a [class.selected]="currentStep === 1" [class.done]="currentStep > 1">
+                    <span class="step_no">1</span>
+                    <span class="step_descr">
+                        {{'Step 1'|translate}} <br />
+                        <small> {{'Enter phone'|translate}}</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a [class.selected]="currentStep === 2" [class.done]="currentStep > 2">
+                    <span class="step_no">2</span>
+                    <span class="step_descr">
+                        {{'Step2'|translate}}<br />
+                        <small> {{'Enter code'|translate}} </small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a [class.selected]="currentStep === 3" [class.done]="currentStep > 3">
+                    <span class="step_no">3</span>
+                    <span class="step_descr">
+                        {{'Step3'|translate}} <br />
+                        <small> {{'Update Password'|translate}} </small>
+                    </span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="stepContainer" style="height: 289px;">
+            <div id="step-1" class="content" [style.display]="currentStep === 1 ? 'block' : 'none'">
+                <form class="form-horizontal form-label-left justify-content-center mt-5">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{placeHolder}}
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 " *ngIf="type == 'phone'">
+                            <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
+                                [(ngModel)]="PhoneTxt" name="PhoneTxt" placeholder="{{placeHolder}}"> <span
+                                class="fa-solid {{icon}} form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 " *ngIf="type == 'mail'">
+                            <input type="email" class="form-control has-feedback-left" id="inputSuccess2"
+                                [(ngModel)]="email" name="email" placeholder={{placeHolder}}> <span
+                                class="fa-solid {{icon}} form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div id="step-2" class="content" [style.display]="currentStep === 2 ? 'block' : 'none'">
+                <h2 class="StepTitle"> {{'Enter code'|translate}}</h2>
+                <p>
+                    {{'You have received a code on your phone number, enter the above to reset your password'|translate}} </p>
+                <form class="form-horizontal form-label-left justify-content-center mt-5">
+                    <div class="alert alert-danger alert-dismissible " role="alert" *ngIf="errorCode">
+
+                        {{errorCode}}
+                    </div>
+                    <div class="alert alert-success alert-dismissible " role="alert" *ngIf="successCode">
+
+                        {{successCode}}
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name"> {{'Code is received'|translate}} <span class="required">*</span>
+                         </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
+                                [(ngModel)]="codeInInput" name="codeInInput" [disabled]="disabledCode"
+                                placeholder="Code"> <span class="fa-sharp fa-solid fa-key form-control-feedback left"
+                                aria-hidden="true"></span>
+
+
+                        </div>
+                        <button class="btn btn-success rounded-circle" (click)="verifyCode()"> <i
+                                class="fa fa-check-square-o"></i></button>
+                    </div>
+
+                </form>
+            </div>
+            <div id="step-3" class="content" [style.display]="currentStep === 3 ? 'block' : 'none'">
+                <h2 class="StepTitle"> {{'Update Password'|translate}} </h2>
+                <form class="form-horizontal form-label-left justify-content-center mt-5">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                            {{'Password'|translate}} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input [type]="changetype?'password':'text'" class="form-control has-feedback-left" id="inputSuccess2"
+                                [(ngModel)]="password" name="password" placeholder="mot-passe"> <span
+                                class="fa-solid fa-lock form-control-feedback left" aria-hidden="true"></span>
+                                <span style=" position: absolute;
+                                 right: 9px;
+                                 top: 10px;
+                                cursor: pointer;" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name"> {{'Confirmpassword'|translate}} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input [type]="changetype1?'password':'text'" class="form-control has-feedback-left" id="inputSuccess2"
+                                placeholder="confirm mot-passe"> <span
+                                class="fa-solid fa-lock form-control-feedback left" aria-hidden="true"></span>
+                                <span style=" position: absolute;
+                                    right: 9px;
+                                     top: 10px;
+                                    cursor: pointer;" (click)="viewpass1()"><i [ngClass]="visible1?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- <div id="step-4" class="content"  [style.display]="currentStep === 4 ? 'block' : 'none'">
+                                            <h2 class="StepTitle">Step 4 Content</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                                commodo consequat.
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                                commodo consequat. Duis aute irure dolor
+                                                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                                qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                                commodo consequat. Duis aute irure dolor
+                                                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                                qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                        </div>  -->
+        </div>
+        <div class="actionBar">
+
+            <button (click)="goToNextStep()" class=" btn btn-success text-white" [disabled]="isDisabledNext">
+                {{'Next'|translate}}</button>
+            <button (click)="goToPreviousStep()" class=" btn btn-primary text-white" [disabled]="isDisabled">
+                {{'Previous'|translate}} </button>
+        </div>
+
+    </div>
+    <!-- End SmartWizard Content -->

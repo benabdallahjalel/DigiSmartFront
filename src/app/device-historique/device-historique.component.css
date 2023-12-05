@@ -1,0 +1,75 @@
+.pdf-download-btn {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+.export-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+.pdf-download-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pdf-type {
+  display: flex;
+  align-items: center;
+}
+
+
+.pdf-date {
+  display: flex;
+  align-items: center;
+}
+
+
+.Pdf{
+  width: 100%;
+}
+.page-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-button:hover {
+  background-color: #0056b3;
+}
+.CSV-date{
+  width: 700px;
+}
+.title_left{
+  width: 100%;
+}
+.bn{
+  margin-left: 75%;
+}
+
+@media screen and (max-width: 700px) {
+  .CSV-date{
+    width: 100%;
+  }
+  /*.bn{*/
+  /*  margin-left: 20%;*/
+  /*}*/
+  .order-1{
+    display: flex;
+    align-items: center;
+    padding-left: 20%;
+  }
+
+  .page-button{
+    margin: 5% 0 5% 10%;
+    order: 1;
+
+  }
+
+}
